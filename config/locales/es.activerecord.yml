@@ -1,0 +1,12 @@
+es:
+  activerecord:
+    models:
+      expense: gasto
+
+    attributes:
+      expense: 
+        transaction_type: Tipo de transacción
+        date: Fecha
+        concept: Concepto
+        category: Categoría
+        amount: Valor

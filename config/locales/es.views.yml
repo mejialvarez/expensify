@@ -1,0 +1,7 @@
+es:
+  expenses:
+    transaction_types:
+      purchase: Compra
+      retirement: Retiro
+      transfer: Transferencia
+      payment: Pago
