@@ -58,7 +58,7 @@ group :test do
   # WebDriver is a tool for writing automated tests of websites
   gem 'selenium-webdriver', '~> 2.53'
   # Making tests easy on the fingers and eyes
-  gem 'shoulda-matchers', '~> 3.1', '>= 3.1.1'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development do
