@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: expenses
+#
+#  id               :integer          not null, primary key
+#  transaction_type :integer          not null
+#  date             :date             not null
+#  concept          :string           not null
+#  category_id      :integer          not null
+#  amount           :decimal(, )      not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#
+
 require 'rails_helper'
 
 describe Expense do
