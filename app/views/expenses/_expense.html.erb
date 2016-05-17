@@ -1,0 +1,21 @@
+<tr>
+  <td class="date">
+    <div class="day"><%= expense.date.day %></div>
+    <div class="month"><%= l expense.date, format: '%b' %></div>
+  </td>
+  <td>
+    <div>
+      <span class="type"><%= t("expenses.transaction_types.#{expense.transaction_type}") %></span>
+    </div>
+    <div>
+      <span class="concept"><%= expense.concept %></span>
+    </div>
+  </td>
+  <td class="category text-right"><%= expense.category %></td>
+  <td class="text-right" style="width: 170px;">
+    <div class="amount"><%= number_to_currency(expense.amount, unit: 'COP') %></div>
+    <div class="actions">
+      <a href="#"><span class="glyphicon glyphicon-edit"></span> Editar</a>
+      <a href="#"><span class="glyphicon glyphicon-trash"></span> Eliminar</a>
+  </td>
+</tr>

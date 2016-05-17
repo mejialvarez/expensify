@@ -58,6 +58,8 @@ RSpec.configure do |config|
   # Include Factory Girl syntax to simplify calls to factories
   config.include FactoryGirl::Syntax::Methods
 
+  config.render_views = true
+
 end
 
 Shoulda::Matchers.configure do |config|

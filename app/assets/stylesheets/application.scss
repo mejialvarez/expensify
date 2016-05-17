@@ -3,17 +3,38 @@
 @import "bootstrap";
 @import "dashboard";
 @import "expenses";
+@import "bootstrap-datepicker";
 
 .navbar-inverse {
   border: 0;
   margin-bottom: 40px;
 }
 
-// add this class to alerts to fix their position
+/* add this class to alerts to fix their position */
 .alert-growl {
+  font-size: 14px;
   position: fixed;
   top: 20px;
   right: 20px;
   max-width: 500px;
   z-index: 1000;
+}
+
+/* Parsley */
+.parsley-error {
+  border-color: #d02d2d !important;
+  @extend .text-danger;
+}
+
+label.parsley-error {
+  border-color: inherit !important;
+  color: inherit;
+}
+
+.parsley-errors-list {
+  @extend .list-unstyled;
+}
+
+.parsley-errors-list li {
+  @extend .text-danger;
 }

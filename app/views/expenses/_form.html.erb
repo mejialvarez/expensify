@@ -1,0 +1,62 @@
+<div class="modal fade" id="js-new-expense-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Nuevo gasto</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for @expense, remote: true, data: { validate: 'parsley' } do |f| %>
+          <div id="js-form-errors-box"></div>
+          
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <%= f.label :transaction_type %>
+                <%= f.collection_select :transaction_type, transaction_types, :first, :last, {}, class: 'form-control', data: { parsley_required: true } %>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <%= f.label :date %>
+                <div class="input-group date" data-provide="datepicker" data-date-format="yyyy-mm-dd" data-date-autoclose="true">
+                  <%= f.text_field :date, value: Date.today, class: 'form-control', data: { parsley_required: true,
+                                                                                       parsley_pattern: '(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))',
+                                                                                       parsley_errors_container: 'div[id="js-error-expense-date"]' } %>
+                  <div class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></div>
+                </div>
+                <div id="js-error-expense-date"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <%= f.label :concept %>
+                <%= f.text_field :concept, class: 'form-control', data: { parsley_required: true } %>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <%= f.label :category %>
+                <%= f.collection_select :category_id, Category.all, :id, :name, {}, class: 'form-control', data: { parsley_required: true } %>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <%= f.label :amount %>
+                <%= f.number_field :amount, class: 'form-control', data: { parsley_required: true, parsley_type: 'integer', parsley_min: '1' } %>
+              </div>
+            </div>
+          </div>
+
+          <%= f.submit class: 'btn btn-sm btn-primary btn-block' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160515012842) do
+ActiveRecord::Schema.define(version: 20160515032110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,5 +21,17 @@ ActiveRecord::Schema.define(version: 20160515012842) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "expenses", force: :cascade do |t|
+    t.integer  "transaction_type", null: false
+    t.date     "date",             null: false
+    t.string   "concept",          null: false
+    t.integer  "category_id",      null: false
+    t.decimal  "amount",           null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "expenses", ["category_id"], name: "index_expenses_on_category_id", using: :btree
 
 end

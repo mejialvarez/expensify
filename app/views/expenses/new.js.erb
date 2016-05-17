@@ -1,0 +1,23 @@
+"use strict";
+
+$('<%= j render "form" %>')
+.on('hidden.bs.modal', onModalHidden)
+.on('shown.bs.modal', onModalShown)
+.modal();
+
+
+function onModalShown(e) {
+  /* Validate form */
+  $('#new_expense').parsley( { listeners: {
+    onFormSubmit: function ( isFormValid, event ) {
+      if(isFormValid) {return false;}
+    }
+  }});
+
+  $('#expense_concept').focus();
+}
+
+function onModalHidden(e) {
+  $(this).remove();
+  $('.modal-backdrop').remove();
+}
