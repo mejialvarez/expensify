@@ -1,6 +1,22 @@
 require 'rails_helper'
 
 describe ExpensesController do
+  describe 'GET #index' do
+    it 'assigns :expenses to @tab' do
+      get :index
+      expect(assigns(:tab)).to eq(:expenses)
+    end
+
+    context 'without params' do
+      it 'populates an array of all expenses sorted by created date' do
+        purchase = create(:purchase)
+        payment = create(:payment)
+        get :index
+        expect(assigns(:expenses)).to eq([payment, purchase])
+      end
+    end
+  end
+
   describe 'GET #new' do
     it "assigns a new Expense to @expense" do
       xhr :get, :new, format: :js
