@@ -5,7 +5,7 @@ module ExpensesHelper
     end
   end
 
-  def expense_successful_message(expense)
-    "#{t("expenses.transaction_types.#{expense.transaction_type}")} por <strong>#{number_to_currency(expense.amount, unit: 'COP')}</strong> en <strong>#{l(expense.date, format: '%B %d').capitalize}</strong> fue creada satisfactoriamente"
+  def expense_successful_message(expense, action)
+    "#{t("expenses.transaction_types.#{expense.transaction_type}")} por <strong>#{number_to_currency(expense.amount, unit: 'COP')}</strong> en <strong>#{l(expense.date, format: '%B %d').capitalize}</strong> fue #{action} satisfactoriamente"
   end
 end

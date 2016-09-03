@@ -1,0 +1,7 @@
+<% if @expense.errors.empty? %>
+  $('#js-new-expense-modal').modal('hide');
+  $('#expense-<%= @expense.id %>').replaceWith('<%= j render @expense %>');
+  $('#js-alert-push').html('<%= j render "shared/alert", type: "success", message: expense_successful_message(@expense, "actualizada") %>');
+<% else %>
+  $('#js-form-errors-box').html('<%= j render "shared/error_messages", object: @expense %>')
+<% end %>
