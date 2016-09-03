@@ -15,7 +15,7 @@
   <td class="text-right" style="width: 170px;">
     <div class="amount"><%= number_to_currency(expense.amount, unit: 'COP') %></div>
     <div class="actions">
-      <a href="#"><span class="glyphicon glyphicon-edit"></span> Editar</a>
+      <%= link_to edit_expense_path(expense), remote: true do %><span class="glyphicon glyphicon-edit"></span> Editar <% end %>
       <a href="#"><span class="glyphicon glyphicon-trash"></span> Eliminar</a>
   </td>
 </tr>
