@@ -9,7 +9,7 @@ describe ExpensesHelper do
 
   describe '#expense_successful_message' do
     it 'returns a successful message' do
-      expect(helper.expense_successful_message(create(:purchase, date: '2016-04-01', amount: 15000))).to eq('Compra por <strong>15.000,00 COP</strong> en <strong>Abril 01</strong> fue creada satisfactoriamente')
+      expect(helper.expense_successful_message(create(:purchase, date: '2016-04-01', amount: 15000), "creada")).to eq('Compra por <strong>15.000,00 COP</strong> en <strong>Abril 01</strong> fue creada satisfactoriamente')
     end
   end
 end
