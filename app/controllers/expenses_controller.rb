@@ -1,5 +1,5 @@
 class ExpensesController < ApplicationController
-  before_action :set_expense, only: [:edit, :update]
+  before_action :set_expense, only: [:edit, :update, :destroy]
 
   def index
     @tab = :expenses
@@ -19,6 +19,10 @@ class ExpensesController < ApplicationController
 
   def update
     @expense.update(expense_params)
+  end
+
+  def destroy
+    @expense.destroy
   end
 
   private

@@ -89,4 +89,13 @@ describe ExpensesController do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    it "deletes the expense" do
+      expense
+      expect{
+        xhr :delete, :destroy, id: expense.id, format: :js
+      }.to change(Expense,:count).by(-1)
+    end
+  end
 end
