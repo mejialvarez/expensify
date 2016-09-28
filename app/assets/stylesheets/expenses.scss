@@ -9,12 +9,21 @@
   }
 }
 
-.filter-type a {
-  display: block;
-  padding: 7px 15px;
-}
+.filter-type {
+  .list-group-item {
+    color: #808487;
+    cursor: pointer;
 
-a.list-group-item { color: #808487; }
+    &.active {
+      background-color: $link-hover-color;
+      color: #fff;
+    }
+
+    &:hover {
+      background-color: $gray-dark;
+    }
+  }
+}
 
 .summary-box {
   padding: 10px;
@@ -24,6 +33,21 @@ a.list-group-item { color: #808487; }
   }
 
   .summary-label { color: #666; }
+}
+
+.month-filter {
+  color: #2F3336;
+  cursor: pointer;
+  clear: both;
+  display: block;
+  font-weight: normal;
+  padding: 3px 20px;
+  line-height: 1.42857143;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: $gray-lighter;
+  }
 }
 
 #expenses-table {

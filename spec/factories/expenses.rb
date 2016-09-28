@@ -18,7 +18,7 @@ FactoryGirl.define do
 
     date { Faker::Date.forward(1) }
     concept { Faker::Lorem.sentence }
-    amount { Faker::Commerce.price }
+    amount { Faker::Number.positive }
 
     factory :purchase do
       transaction_type 0

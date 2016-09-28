@@ -3,7 +3,13 @@ class ExpensesController < ApplicationController
 
   def index
     @tab = :expenses
-    @expenses = Expense.all.order(created_at: :desc)
+    @categories = Category.all
+    @transaction_types = Expense.transaction_types
+
+    @expenses = Expense.by_month((params[:month] || Date.today.month), (params[:year] || Date.today.year))
+    @expenses = @expenses.by_category(params[:category]) if params[:category].present?
+    @expenses = @expenses.by_transaction_type(params[:transaction_type]) if params[:transaction_type].present?
+    @expenses = @expenses.order(created_at: :desc)
   end
 
   def new
