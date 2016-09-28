@@ -24,7 +24,8 @@ class Expense < ActiveRecord::Base
   validates :category, presence: true
   validates :amount, presence: true, numericality: { greater_than_or_equal_to: 1 }
 
-  def self.total
-    sum(:amount)
-  end
+  scope :by_category, ->(category) { where(category_id: category) }
+  scope :by_transaction_type, ->(transaction_type) { where(transaction_type: transaction_type) }
+  scope :by_month, ->(month, year) { where('extract(month from date) = ? AND extract(year from date) = ?', month, year) }
+
 end

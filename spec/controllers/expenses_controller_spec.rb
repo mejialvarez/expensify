@@ -12,6 +12,33 @@ describe ExpensesController do
       expect(assigns(:tab)).to eq(:expenses)
     end
 
+    context 'with params' do
+      it 'populates an array of expenses fitered by category' do
+        purchase = create(:purchase, category_id: category.id)
+        category_two = create(:category)
+        payment = create(:payment, category_id: category_two.id)
+
+        get :index, category: category_two.id
+        expect(assigns(:expenses)).to eq([payment])
+      end
+
+      it 'populates an array of expenses fitered by transaction type' do
+        purchase = create(:purchase, category_id: category.id)
+        payment = create(:payment, category_id: category.id)
+
+        get :index, transaction_type: Expense::transaction_types[:payment]
+        expect(assigns(:expenses)).to eq([payment])
+      end
+
+      it 'populates an array of expenses fitered by month' do
+        purchase = create(:purchase, category_id: category.id, date: Date.today)
+        payment = create(:payment, category_id: category.id, date: (Date.today - 90))
+
+        get :index, month: Date.today.month, year: Date.today.year
+        expect(assigns(:expenses)).to eq([purchase])
+      end
+    end
+
     context 'without params' do
       it 'populates an array of all expenses sorted by created date' do
         purchase = create(:purchase, category_id: category.id)
@@ -36,12 +63,12 @@ describe ExpensesController do
 
   describe 'GET #edit' do
     it 'assigns the requested expense to @expense' do
-      xhr :get, :edit, id: expense, format: :js
+      xhr :get, :edit, id: expense.id, format: :js
       expect(assigns(:expense)).to eq(expense)
     end
 
     it 'renders the :edit template' do
-      xhr :get, :edit, id: expense, format: :js
+      xhr :get, :edit, id: expense.id, format: :js
       expect(response).to render_template :edit
     end
   end
