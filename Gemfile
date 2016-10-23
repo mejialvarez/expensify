@@ -53,6 +53,8 @@ group :test do
   gem 'selenium-webdriver', '~> 2.53'
   # Making tests easy on the fingers and eyes
   gem 'shoulda-matchers', '~> 3.1'
+  # Coverage report
+  gem "codeclimate-test-reporter", require: nil
 end
 
 group :development do
