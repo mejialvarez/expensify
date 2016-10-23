@@ -44,11 +44,11 @@ group :development, :test do
   gem 'guard-rspec', '~> 4.6', '>= 4.6.5'
   # Rspec command for spring
   gem 'spring-commands-rspec', '~> 1.0', '>= 1.0.4'
+  # Generate data test
+  gem 'faker', '~> 1.6', '>= 1.6.3'
 end
 
 group :test do
-  # Generate data test
-  gem 'faker', '~> 1.6', '>= 1.6.3'
   # It simulates how a user would interact with a website
   gem 'capybara', '~> 2.7', '>= 2.7.1'
   # Helps make sure each spec run in RSpec begins with a clean slate
