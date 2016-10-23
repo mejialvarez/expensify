@@ -30,7 +30,7 @@ module ExpensesHelper
   def month_filters
     month_list = ""
     end_date = Date.today
-    start_date = end_date - 335
+    start_date = end_date - 12.month
     (start_date..end_date).step(32).reverse_each do |month|
       month_list += render partial: 'expenses/month_filter', locals: { month: month }
     end
