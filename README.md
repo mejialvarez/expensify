@@ -1,5 +1,11 @@
 ![Codeship status](https://app.codeship.com/projects/a3f8fa90-7af6-0134-4fb6-6241d610af9c/status?branch=master)
 
+![Code Climate](https://codeclimate.com/github/mejialvarez/expensify/badges/gpa.svg)
+
+![Test Coverage](https://codeclimate.com/github/mejialvarez/expensify/badges/coverage.svg)](https://codeclimate.com/github/mejialvarez/expensify/coverage)
+
+![Issue Count](https://codeclimate.com/github/mejialvarez/expensify/badges/issue_count.svg)
+
 README
 ======
 
