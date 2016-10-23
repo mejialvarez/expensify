@@ -2,7 +2,7 @@
 
 ![Code Climate](https://codeclimate.com/github/mejialvarez/expensify/badges/gpa.svg)
 
-![Test Coverage](https://codeclimate.com/github/mejialvarez/expensify/badges/coverage.svg)](https://codeclimate.com/github/mejialvarez/expensify/coverage)
+![Test Coverage](https://codeclimate.com/github/mejialvarez/expensify/badges/coverage.svg)
 
 ![Issue Count](https://codeclimate.com/github/mejialvarez/expensify/badges/issue_count.svg)
 
