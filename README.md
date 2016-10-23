@@ -1,4 +1,7 @@
-== README
+![Codeship status](https://app.codeship.com/projects/a3f8fa90-7af6-0134-4fb6-6241d610af9c/status?branch=master)
+
+README
+======
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
