@@ -1,12 +1,6 @@
 module ExpensesHelper
-  def transaction_type_options
-    Expense.transaction_types.inject({}) do |hash, elem|
-      hash.merge!(elem.first => t("expenses.transaction_types.#{elem.first}"))
-    end
-  end
-
   def expense_successful_message(expense, action)
-    "#{t("expenses.transaction_types.#{expense.transaction_type}")} por <strong>#{number_to_currency(expense.amount, unit: 'COP')}</strong> en <strong>#{l(expense.date, format: '%B %d').capitalize}</strong> fue #{action} satisfactoriamente"
+    "The #{expense.transaction_type} <strong>#{expense.concept.humanize}</strong> for <strong>$#{number_to_currency(expense.amount, unit: '')}</strong> on <strong>#{expense.date.strftime('%B %d').capitalize}</strong> was #{action} successfully!"
   end
 
   def category_filters(categories)

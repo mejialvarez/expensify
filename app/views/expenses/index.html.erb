@@ -2,11 +2,11 @@
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <h4 class="filter-header">Tipo de transacción <span>Seleccionar para filtrar</span></h4>
+      <h4 class="filter-header">Transaction type <span>Select to filter</span></h4>
       <div class="list-group filter-type js-transaction-type-filters">
         <%= transaction_type_filters(@transaction_types) %>
       </div>
-      <h4 class="filter-header">Categoría <span>Selecciona para filtrar</span></h4>
+      <h4 class="filter-header">Category <span>Select to filter</span></h4>
       <div class="list-group filter-type js-category-filters">
         <%= category_filters(@categories) %>
       </div>
@@ -20,18 +20,18 @@
         </diV>
         <div class="summary-box col-md-4 text-center">
           <div class="summary-value" id="js-expense-size"><%= @expenses.size %></div>
-          <div class="summary-label">Transacciones</div>
+          <div class="summary-label">Transactions</div>
         </div>
         <div class="summary-box col-md-4 text-center">
           <div class="summary-value" id="js-expense-average">$<%= number_to_currency @expenses.average(:amount) || 0, unit: '' %></div>
-          <div class="summary-label">Promedio</div>
+          <div class="summary-label">Average</div>
         </div>
       </div>
 
       <div class="row" style="margin-top: 20px;">
         <div class="col-md-12">
           <%= link_to new_expense_path, remote: true, class: 'btn btn-success pull-left' do %>
-            <span class="glyphicon glyphicon-plus"></span> Nuevo gasto
+            <span class="glyphicon glyphicon-plus"></span> New expense
           <% end %>
           <h4 class="dropdown pull-right">
             <button type="button" class="dropdown-toggle btn btn-link" data-toggle="dropdown">
@@ -50,10 +50,10 @@
       <table id="expenses-table" class="table table-hover" style="margin-top: 20px;">
         <thead>
           <tr>
-            <th class="text-center">Día</th>
-            <th>Concepto</th>
-            <th class="text-right">Categoría</th>
-            <th class="text-right">Valor</th>
+            <th class="text-center">Day</th>
+            <th>Concept</th>
+            <th class="text-right">Category</th>
+            <th class="text-right">Value</th>
           </tr>
         </thead>
         <tbody id="js-list-expenses">
