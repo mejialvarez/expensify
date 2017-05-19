@@ -1,0 +1,6 @@
+$('#js-list-expenses').html('<%= j render @expenses %>')
+$('#js-expense-total').text("<%= number_to_currency @expenses.sum(:amount), unit: '' %>");
+$('#js-expense-size').text("<%= @expenses.size %>");
+$('#js-expense-average').text("<%= number_to_currency @expenses.average(:amount) || 0, unit: '' %>");
+
+$('#js-current-month-filter').text("<%= current_month_filter(params[:month_ago]) %>");

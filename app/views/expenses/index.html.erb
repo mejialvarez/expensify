@@ -1,31 +1,29 @@
+<%= hidden_field_tag :expenses_path, expenses_path, { id: 'js-expenses-path' } %>
 <div class="container">
   <div class="row">
-    <%= form_tag expenses_path, method: :get, class: 'expense-search-form' do %>
     <div class="col-md-3">
       <h4 class="filter-header">Tipo de transacción <span>Seleccionar para filtrar</span></h4>
-      <div class="list-group filter-type">
+      <div class="list-group filter-type js-transaction-type-filters">
         <%= transaction_type_filters(@transaction_types) %>
-        <%= hidden_field_tag :transaction_type, params[:transaction_type] %>
       </div>
       <h4 class="filter-header">Categoría <span>Selecciona para filtrar</span></h4>
-      <div class="list-group filter-type">
+      <div class="list-group filter-type js-category-filters">
         <%= category_filters(@categories) %>
-        <%= hidden_field_tag :category, params[:category] %>
       </div>
     </div>
 
     <div class="col-md-9 index-data">
       <div class="row" style="margin-top: 10px;">
         <div class="summary-box col-md-4 text-center">
-          <div class="summary-value">$<%= number_to_currency @expenses.sum(:amount), unit: 'COP' %></div>
+          <div class="summary-value" id="js-expense-total">$<%= number_to_currency @expenses.sum(:amount), unit: '' %></div>
           <div class="summary-label">Total</div>
         </diV>
         <div class="summary-box col-md-4 text-center">
-          <div class="summary-value"><%= @expenses.size %></div>
+          <div class="summary-value" id="js-expense-size"><%= @expenses.size %></div>
           <div class="summary-label">Transacciones</div>
         </div>
         <div class="summary-box col-md-4 text-center">
-          <div class="summary-value">$<%= number_to_currency @expenses.average(:amount) || 0, unit: 'COP' %></div>
+          <div class="summary-value" id="js-expense-average">$<%= number_to_currency @expenses.average(:amount) || 0, unit: '' %></div>
           <div class="summary-label">Promedio</div>
         </div>
       </div>
@@ -37,12 +35,14 @@
           <% end %>
           <h4 class="dropdown pull-right">
             <button type="button" class="dropdown-toggle btn btn-link" data-toggle="dropdown">
-              <%= current_month_filter(params[:month_ago]) %> <span class="caret"></span>
+              <span id="js-current-month-filter">
+                <%= current_month_filter(params[:month_ago]) %>
+              </span>
+              <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" role="menu">
+            <ul class="dropdown-menu js-month-filters" role="menu">
               <%= month_filters %>
             </ul>
-            <%= hidden_field_tag :month_ago, params[:month_ago] %>
           </h4>
         </div>
       </div>
@@ -56,11 +56,10 @@
             <th class="text-right">Valor</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="js-list-expenses">
           <%= render @expenses %>
         </tbody>
       </table>
     </div>
-    <% end %>
   </div>
 </div>

@@ -10,6 +10,11 @@ class ExpensesController < ApplicationController
     @expenses = @expenses.by_category(params[:category]) if params[:category].present?
     @expenses = @expenses.by_transaction_type(params[:transaction_type]) if params[:transaction_type].present?
     @expenses = @expenses.order(created_at: :desc)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def new
