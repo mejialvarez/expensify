@@ -1,11 +1,11 @@
 <tr id="expense-<%= expense.id %>">
   <td class="date">
     <div class="day"><%= expense.date.day %></div>
-    <div class="month"><%= l expense.date, format: '%b' %></div>
+    <div class="month"><%= expense.date.strftime('%b') %></div>
   </td>
   <td>
     <div>
-      <span class="type"><%= t("expenses.transaction_types.#{expense.transaction_type}") %></span>
+      <span class="type"><%= expense.transaction_type.humanize %></span>
     </div>
     <div>
       <span class="concept"><%= expense.concept %></span>
@@ -13,9 +13,9 @@
   </td>
   <td class="category text-right"><%= expense.category %></td>
   <td class="text-right" style="width: 170px;">
-    <div class="amount"><%= number_to_currency(expense.amount, unit: 'COP') %></div>
+    <div class="amount"><%= number_to_currency(expense.amount, unit: '') %></div>
     <div class="actions">
-      <%= link_to edit_expense_path(expense), remote: true do %><span class="glyphicon glyphicon-edit"></span> Editar <% end %>
-      <%= link_to expense_path(expense), remote: true, method: :delete, data: { confirm: '¿Está seguro?' } do %><span class="glyphicon glyphicon-trash"></span> Eliminar <% end %>
+      <%= link_to edit_expense_path(expense), remote: true do %><span class="glyphicon glyphicon-edit"></span> Edit <% end %>
+      <%= link_to expense_path(expense), remote: true, method: :delete, data: { confirm: 'Are you sure?' } do %><span class="glyphicon glyphicon-trash"></span> Delete <% end %>
   </td>
 </tr>
