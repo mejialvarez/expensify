@@ -3,7 +3,7 @@ require 'rails_helper'
 describe ExpensesHelper do
   describe '#transaction_types' do
     it 'returns a hash of transaction types' do
-      expect(helper.transaction_types).to include('purchase' => 'Compra', 'retirement' => 'Retiro', 'transfer' => 'Transferencia', 'payment' => 'Pago')
+      expect(helper.transaction_type_options).to include('purchase' => 'Compra', 'retirement' => 'Retiro', 'transfer' => 'Transferencia', 'payment' => 'Pago')
     end
   end
 

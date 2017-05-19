@@ -1,27 +1,27 @@
 <div class="container">
   <div class="row">
     <div class="total-box col-md-3">
-      $200,000
-      <span>HOY</span>
+      $<%= number_to_currency(@today_expenses.sum(:amount), unit: '') %>
+      <span>TODAY</span>
     </div>
     <div class="total-box col-md-3">
-      $140,000
-      <span>AYER</span>
+      $<%= number_to_currency(@yesterday_expenses.sum(:amount), unit: '') %>
+      <span>YESTERDAY</span>
     </div>
     <div class="total-box col-md-3">
-      $7,500,000
-      <span>ESTE MES</span>
+      $<%= number_to_currency(@current_month_expenses.sum(:amount), unit: '') %>
+      <span>CURRENT MONTH</span>
     </div>
     <div class="total-box col-md-3">
-      $6,200,000
-      <span>MES PASADO</span>
+      $<%= number_to_currency(@last_month_expenses.sum(:amount), unit: '') %>
+      <span>LAST MONTH</span>
     </div>
   </div>
 
   <div class="row" style="margin-top: 40px;">
     <div class="box col-md-6">
       <div class="panel panel-default">
-        <div class="panel-heading">Últimos 6 Meses</div>
+        <div class="panel-heading">Last 6 months</div>
         <div class="panel-body">
           <div id="expenses-chart" style="height: 250px;"></div>
         </div>
@@ -29,7 +29,7 @@
     </div>
     <div class="box col-md-6">
       <div class="panel panel-default">
-        <div class="panel-heading">Por Día</div>
+        <div class="panel-heading">By day</div>
         <div class="panel-body">
           <div id="daily-expenses-chart" style="height: 250px;"></div>
         </div>
@@ -40,7 +40,7 @@
   <div class="row" style="margin-top: 10px;">
     <div class="box col-md-6">
       <div class="panel panel-default">
-        <div class="panel-heading">Por Categoría</div>
+        <div class="panel-heading">By category</div>
         <div class="panel-body">
           <div id="category-chart" style="height: 250px;"></div>
         </div>
@@ -48,7 +48,7 @@
     </div>
     <div class=" box col-md-6">
       <div class="panel panel-default">
-        <div class="panel-heading">Acumulado</div>
+        <div class="panel-heading">Acumulative</div>
         <div class="panel-body">
           <div id="month-acc" style="height: 250px;"></div>
         </div>
@@ -56,3 +56,75 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  var newExpensesColumnChart = function(elementId, data) {
+    new CanvasJS.Chart(elementId,
+    {
+      toolTip: {
+        shared: "true"
+      },
+      backgroundColor: 'transparent',
+      legend: {
+        fontSize: 13,
+        fontFamily: "Helvetica Neue",
+        fontColor: "#666"
+      },
+      axisX: {
+        lineThickness: 0
+      },
+      axisY: {
+        gridThickness: 1,
+        gridColor: '#666',
+        tickColor: '#666',
+        tickThickness: 1,
+        lineThickness: 0
+      },
+      data: data
+    }).render();
+  }
+
+  var newExpensesDoughnutChart = function(elementId, data) {
+    new CanvasJS.Chart(elementId,
+    {
+      backgroundColor: 'transparent',
+      data: [
+      {
+        type: "doughnut",
+        startAngle:20,
+        toolTipContent: "{label}: {y} - <strong>#percent%</strong>",
+        indexLabel: "{label} #percent%",
+        dataPoints: data
+      }
+      ]
+    }).render();
+  }
+
+  var newExpensesCumulativeChart = function(elementId, data) {
+    new CanvasJS.Chart(elementId,
+    {      
+      legend: {
+        fontSize: 13,
+        fontFamily: "Helvetica Neue",
+        fontColor: "#666"
+      },
+      backgroundColor: 'transparent',
+      axisX: {
+        lineThickness: 0
+      },
+      axisY: {
+        gridThickness: 1,
+        gridColor: '#666',
+        tickColor: '#666',
+        tickThickness: 1,
+        lineThickness: 0
+      },
+      data: data
+    }).render();
+  }
+
+  newExpensesColumnChart("expenses-chart", <%= columnChartData(@monthly_expenses, columnType: 'stackedColumn') %>);
+  newExpensesColumnChart("daily-expenses-chart", <%= columnChartData(@daily_expenses, columnType: 'column') %>);
+  newExpensesDoughnutChart("category-chart", <%= @category_expenses.to_json.html_safe %>);
+  newExpensesCumulativeChart("month-acc", <%= cumulativeChartData(@cumulative_expenses) %>);
+</script>

@@ -4,11 +4,13 @@
     <div class="col-md-3">
       <h4 class="filter-header">Tipo de transacción <span>Seleccionar para filtrar</span></h4>
       <div class="list-group filter-type">
-        <%= transaction_type_filters %>
+        <%= transaction_type_filters(@transaction_types) %>
+        <%= hidden_field_tag :transaction_type, params[:transaction_type] %>
       </div>
       <h4 class="filter-header">Categoría <span>Selecciona para filtrar</span></h4>
       <div class="list-group filter-type">
-        <%= category_filters %>
+        <%= category_filters(@categories) %>
+        <%= hidden_field_tag :category, params[:category] %>
       </div>
     </div>
 
@@ -35,11 +37,12 @@
           <% end %>
           <h4 class="dropdown pull-right">
             <button type="button" class="dropdown-toggle btn btn-link" data-toggle="dropdown">
-              <%= current_month_filter(params[:month], params[:year]) %> <span class="caret"></span>
+              <%= current_month_filter(params[:month_ago]) %> <span class="caret"></span>
             </button>
             <ul class="dropdown-menu" role="menu">
               <%= month_filters %>
             </ul>
+            <%= hidden_field_tag :month_ago, params[:month_ago] %>
           </h4>
         </div>
       </div>
