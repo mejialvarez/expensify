@@ -15,7 +15,7 @@
 class Expense < ActiveRecord::Base
   belongs_to :category
 
-  enum transaction_type: {'purchase': 0, 'retirement': 1, 'transfer': 2, 'payment': 3}
+  enum transaction_type: [:purchase, :retirement, :transfer, :payment]
 
   VALIDATE_REGEX_DATE = /(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))/
   validates :transaction_type, inclusion: { in: transaction_types }
@@ -26,6 +26,5 @@ class Expense < ActiveRecord::Base
 
   scope :by_category, ->(category) { where(category_id: category) }
   scope :by_transaction_type, ->(transaction_type) { where(transaction_type: transaction_type) }
-  scope :by_month, ->(month, year) { where('extract(month from date) = ? AND extract(year from date) = ?', month, year) }
-
+  scope :between, ->(range) { where(date: range) }
 end

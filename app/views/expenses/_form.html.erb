@@ -13,7 +13,7 @@
             <div class="col-sm-6">
               <div class="form-group">
                 <%= f.label :transaction_type %>
-                <%= f.collection_select :transaction_type, transaction_types, :first, :last, {}, class: 'form-control', data: { parsley_required: true } %>
+                <%= f.collection_select :transaction_type, transaction_type_options, :first, :last, {}, class: 'form-control', data: { parsley_required: true } %>
               </div>
             </div>
             <div class="col-sm-6">

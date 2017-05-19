@@ -11,11 +11,9 @@ var ready = function() {
   });
 
   $('.month-filter').click(function() {
-    var month = $(this).attr('data-month');
-    var year = $(this).attr('data-year');
+    var monthAgo = $(this).attr('data-month-ago');
 
-    $('#month').val(month);
-    $('#year').val(year);
+    $('#month_ago').val(monthAgo);
 
     $('.expense-search-form').submit();
   });

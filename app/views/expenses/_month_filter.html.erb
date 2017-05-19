@@ -1,3 +1,3 @@
-<li role='presentation' class='month-filter' data-month='<%= month.strftime("%m") %>' data-year='<%= month.strftime("%Y") %>'>
-  <%= "#{l(month, format:'%b').capitalize} #{l(month, format:'%Y')}" %>
+<li role='presentation' class='month-filter' data-month-ago='<%= month_ago %>'>
+  <%= "#{l(month_ago.month.ago, format:'%b').capitalize} #{l(month_ago.month.ago, format:'%Y')}" %>
 </li>
