@@ -28,13 +28,13 @@ module ExpensesHelper
   def month_filters
     month_list = ""
     (0..12).each do |month_number|
-      month_list += render partial: 'expenses/month_filter', locals: { month_ago: month_number }
+      month_list += render partial: 'expenses/month_filter', locals: { month: month_number }
     end
     month_list.html_safe
   end
 
-  def current_month_filter(month_ago)
-    month_current = month_ago.to_i.month.ago
+  def current_month_filter(month)
+    month_current = month.to_i.month.ago
     "#{l(month_current, format: '%b').capitalize} #{l(month_current, format: '%Y')}"
   end
 

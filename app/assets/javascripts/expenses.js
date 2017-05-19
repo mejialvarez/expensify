@@ -1,22 +1,37 @@
 var ready = function() {
-  $('.list-group-item').click(function() {
-    var $filters = $(this).parent();
-    var currentFilter = $filters.find('.active').attr('data');
-    var filter = $(this).attr('data');
-    if(currentFilter === filter) filter = '';
+  $('.js-filter').click(function() {
+    var $filterParent = $(this).parent();
 
-    $filters.find('input[type=hidden]').val(filter);
+    $filterParent.find('.js-filter').not(this).removeClass('active');
+    $(this).toggleClass('active');
 
-    $('.expense-search-form').submit();
+    filterExpenses($('#js-expenses-path').val());
   });
 
-  $('.month-filter').click(function() {
-    var monthAgo = $(this).attr('data-month-ago');
+  function filterExpenses(url) {
+    $.ajax({
+      url: url,
+      data: getFilterData(),
+      dataType: 'script'
+    });
+  }
 
-    $('#month_ago').val(monthAgo);
+  function getFilterData() {
+    var monthFilter = $('.js-month-filters .active')
+    .attr('data-month-filter');
 
-    $('.expense-search-form').submit();
-  });
+    var categoryFilter = $('.js-category-filters .active')
+    .attr('data-category-filter');
+
+    var transactionTypeFilter = $('.js-transaction-type-filters .active')
+    .attr('data-transaction-type-filter');
+
+    return {
+      month_ago: monthFilter,
+      category: categoryFilter,
+      transaction_type: transactionTypeFilter
+    };
+  }
 };
 
 $(document).ready(ready);

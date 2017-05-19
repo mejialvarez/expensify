@@ -34,8 +34,8 @@ describe ExpensesController do
         purchase = create(:purchase, category_id: category.id, date: Date.today)
         payment = create(:payment, category_id: category.id, date: (Date.today - 90))
 
-        get :index, month: Date.today.month, year: Date.today.year
-        expect(assigns(:expenses)).to eq([purchase])
+        get :index, month_ago: 3
+        expect(assigns(:expenses)).to eq([payment])
       end
     end
 
