@@ -2,9 +2,8 @@
 <script>
 !function(t,e,n,s) { t.DPEventsFunction=s,t[s]=t[s] || function() { (t[s].q=t[s].q||[]).push(arguments) }; var c=e.createElement("script"),o=e.getElementsByTagName("script")[0]; c.async=1,c.src=n,o.parentNode.insertBefore(c,o); }(window, document, "https://convertloop-stage.co/v1/loop.js", "_dp");
 
-_dp("configure", { host: "https://convertloop-stage.co", apiHost: "https://api.convertloop-stage.co", appId: "<%= ENV['CONVERTLOOP_APP_ID'] %>" });
-$(document).on("page:change", function() {
-  _dp("pageView");
-});
+_dp("configure", { host: "https://convertloop-stage.co", apiHost: "https://api.convertloop-stage.co", appId: "<%= ENV['CONVERTLOOP_APP_ID'] %>", autoTrack: true });
+_dp("pageView");
+
 </script>
 <!-- End ConvertLoop -->
